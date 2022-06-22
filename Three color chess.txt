@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+#define BLUE 'b'
+#define WHITE 'w'
+#define RED 'r'
+
+void SWAP(int x,int y)
+{
+	char temp;
+	int color1[] = {0},color2[] = {0};
+	temp = color1[x];
+	color1[x] = color2[y];
+	color2[y] = temp;
+}
+
+int main()
+{
+	char color[] = {'r','w','b','w','w','b','r','b','w','r','\0'};
+	int wFlag = 0;
+	int bFlag = 0;
+	int rFlag = strlen(color) - 1;
+	int i;
+	for(i = 0;i < strlen(color);i ++)
+	printf("%c",color[i]);
+	printf("\n");
+	while(wFlag <= rFlag)
+	{
+		if(color[wFlag] == WHITE)
+			wFlag++;
+		else if(color[wFlag] == BLUE)
+		{
+			SWAP(bFlag,wFlag);
+			bFlag++,wFlag;
+		}
+		else
+		{
+			while(wFlag < rFlag && color[rFlag] == RED)
+			{
+				rFlag--;
+				SWAP(rFlag,wFlag);
+				rFlag;
+			}
+		}
+	}
+	for(i = 0;strlen(color);i++)
+		printf("%c",color[i]);
+	printf("\n");
+	while(1)getchar();
+}
+
